@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V13 • GOLD • SL ONLY • NO TP • LET IT RUN</title>
+<style>
+*{box-sizing:border-box}
+body{background:#0b0e14;color:#fff;font-family:system-ui,-apple-system,Arial,sans-serif;padding:14px;margin:0;max-width:500px;margin-inline:auto}
+.top{text-align:center;background:#121626;border-radius:14px;padding:14px;border:1px solid #1e2438}
+.coinBar{display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:8px}
+.coinSelect{background:#0b0e14;color:#f0b90b;border:1px solid #f0b90b;border-radius:10px;padding:8px 14px;font-weight:900;font-size:16px;cursor:pointer;outline:none}
+.top b{color:#f0b90b;font-size:19px;display:block}
+.top small{color:#8a9ab5;display:block;margin-top:4px;font-size:12px}
+.badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;margin-top:6px;background:#1e2438;color:#00d68f}
+.badge.off{color:#ff2d55}
+.card{background:#121626;border-radius:14px;padding:14px;margin-top:12px;border:1px solid #1e2438}
+.row{display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.red{color:#ff2d55;font-weight:900}
+.green{color:#00d68f;font-weight:900}
+.btns{display:flex;gap:10px;margin-top:12px}
+.btnBuy{flex:1;background:#00d68f;color:#000;border:0;padding:15px;border-radius:14px;font-weight:900;font-size:15px;cursor:pointer}
+.btnSell{flex:1;background:#ff2d55;color:#fff;border:0;padding:15px;border-radius:14px;font-weight:900;font-size:15px;cursor:pointer}
+.mainBtn{width:100%;background:#00d68f;color:#000;border:0;padding:15px;border-radius:14px;font-weight:900;margin-top:12px;font-size:15px;cursor:pointer}
+.mainBtn.paused{background:#ff2d55;color:#fff}
+.smallBtns{display:flex;gap:8px;margin-top:10px}
+.smallBtns button{flex:1;background:#1e2438;color:#cbd5e1;border:0;padding:10px 6px;border-radius:10px;font-size:12px;cursor:pointer}
+.tradeItem{background:#0b0e14;border:1px solid #222a44;border-radius:10px;padding:10px;margin-top:8px}
+.tradeTop{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700}
+.tradeSub{font-size:12px;color:#8a9ab5;margin-top:4px;line-height:1.5}
+.miniClose{background:#ff2d55;color:#fff;border:0;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:800;cursor:pointer;margin-top:6px}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+th{color:#8a9ab5;text-align:left;padding-bottom:6px}
+td{padding:7px 0;border-top:1px solid #222a44}
+.footer{text-align:center;color:#8a9ab5;font-size:11px;margin:16px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.field label{display:block;font-size:11px;color:#8a9ab5;margin-bottom:4px}
+.field input,.field select{width:100%;background:#0b0e14;border:1px solid #2d3756;color:#fff;border-radius:8px;padding:8px;text-align:center;font-size:13px;font-weight:700}
+.saveBtn{width:100%;background:#f0b90b;color:#000;border:0;border-radius:10px;padding:10px;font-weight:900;margin-top:10px;cursor:pointer}
+.signal{font-size:12px;text-align:center;padding:8px;border-radius:8px;margin-top:8px;background:#0b0e14;border:1px solid #222a44;line-height:1.5}
+.step{display:flex;gap:6px;margin-top:8px}
+.step div{flex:1;text-align:center;font-size:11px;padding:6px;border-radius:8px;background:#0b0e14;border:1px solid #222a44;color:#8a9ab5}
+.step div.on{background:#1e3a2a;border-color:#00d68f;color:#00d68f;font-weight:800}
+.stats{display:flex;justify-content:space-between;font-size:12px;color:#8a9ab5;margin-top:8px;padding-top:8px;border-top:1px solid #222a44}
+.note{font-size:11px;color:#8a9ab5;text-align:center;margin-top:8px;line-height:1.5}
+.trailBox{background:#0b3a2a;border:1px solid #00d68f;border-radius:10px;padding:10px;font-size:12px;line-height:1.6;margin-top:10px;text-align:left}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="coinBar"><select id="coinSelect" class="coinSelect" onchange="changeCoin()"><option value="XAU">XAU / USD - GOLD 📈</option><option value="EUR">EUR / USD</option><option value="GBP">GBP / USD</option><option value="SOL">SOL / USDT - Crypto</option></select></div>
+  <b id="priceTop">XAU/USD: $2,650.00 • Live</b>
+  <span class="badge" id="sourceBadge">Connecting...</span>
+  <small id="dailyTop">Today P/L: $0.00 • Total Trades: 0</small>
+  <small id="leftText" style="color:#00d68f;margin-top:5px">V13 • SL ONLY • NO TP • LET IT RUN</small>
+  <div class="step"><div id="step1">1. WAIT BOS</div><div id="step2">2. WAIT FVG</div><div id="step3">3. RUNNING 📈</div></div>
+  <div class="signal" id="signalBox">⏳ Step 1: Waiting for BOS...</div>
+  <div class="trailBox" id="trailBox">🔒 Trailing: SL -0.30% • At +0.60% → SL to Break-even • At +1.20% → Lock +$0.75 • After that SL trails 0.30% behind price</div>
+</div>
+<div class="card"><div class="row"><span id="statusLabel" style="font-weight:700">● BOS+FVG (0 Open)</span><span class="green" id="openPL">Open P/L: +$0.00</span></div><div id="openTradesList" style="margin-top:8px"><div style="font-size:13px;color:#8a9ab5">No active trades. Bot waiting for BOS + FVG.</div></div></div>
+<div class="btns"><button class="btnBuy" id="buyBtnText" onclick="manualBuy()">🟢 ADD XAU TRADE</button><button class="btnSell" onclick="closeAllTrades('MANUAL ALL')">🔴 CLOSE ALL (0)</button></div>
+<div class="card" id="loopInfo" style="font-size:12px;color:#cbd5e1;line-height:1.5">SL ONLY • NO TP • Continuous</div>
+<button class="mainBtn" id="mainBtn" onclick="toggleBot()">● BOS+FVG AUTO - Tap to PAUSE</button>
+<div class="smallBtns"><button onclick="resetDay()">↺ Reset Day</button><button onclick="hardReset()">🛠️ Full Reset</button><button onclick="fetchPrices()">↻ Sync Price</button></div>
+<div class="card"><div style="font-size:13px;font-weight:700;color:#fff">⚙️ V13 - SL ONLY Settings</div><div class="grid"><div class="field"><label>Total Capital ($)</label><input type="number" id="capitalInput" step="0.1" value="10.00"></div><div class="field"><label>Margin Per Trade ($)</label><input type="number" id="sizeInput" step="0.5" value="5.00"></div><div class="field"><label>Max Open Trades</label><input type="number" id="maxTradesInput" min="1" max="25" step="1" value="1"></div><div class="field"><label>Leverage (Forex)</label><select id="levInput"><option value="10">10x</option><option value="20">20x</option><option value="30" selected>30x</option><option value="50">50x - Risky</option></select></div><div class="field"><label>BOS Break %</label><input type="number" id="bosInput" step="0.01" value="0.05"></div><div class="field"><label>FVG Pullback %</label><input type="number" id="dipInput" step="0.01" value="0.10"></div><div class="field"><label>Stop Loss % (ONLY)</label><input type="number" id="slInput" step="0.05" value="0.30"></div><div class="field"><label>Trailing Start %</label><input type="number" id="trailStartInput" step="0.05" value="0.60"></div><div class="field"><label>Auto-Entry Mode</label><select id="autoModeInput"><option value="auto" selected>Auto BOS+FVG - ON</option><option value="manual">Manual Buy Only</option></select></div><div class="field"><label>Spread / Fee (%)</label><input type="number" id="feeInput" step="0.01" value="0.10"></div></div><button class="saveBtn" onclick="saveSettings()">SAVE SETTINGS</button><div style="font-size:12px;color:#00d68f;margin-top:8px;text-align:center" id="capitalInfo">Calculating...</div></div>
+<div class="card"><div class="row"><b>Trade History</b><span style="font-size:12px;color:#8a9ab5" id="winRate">Win Rate: 0%</span></div><table><thead><tr><th>#</th><th>Pair / Entry → Exit</th><th>Net P/L</th><th>Exit</th></tr></thead><tbody id="history"><tr><td colspan="4" style="text-align:center;color:#8a9ab5">No closed trades yet</td></tr></tbody></table><div class="stats"><span id="balDisplay">Free Cash: $10.00</span><span id="winsDisplay">Wins: 0 | Losses: 0</span></div></div>
+<div class="note">V13: SL protects you. TP is OFF. Bot trails SL 0.30% behind price after +0.60% profit. You can close manually anytime for a big win. XAU uses PAXG live price as Gold proxy.</div>
+<div class="footer">V13 • GOLD • SL ONLY • NO TP • TRAILING • LET IT RUN 📈</div>
+<script>
+var COINS = { XAU:{sym:'PAXGUSDT',dec:2,qtyDec:4,price:2650.00,label:'XAU/USD'}, EUR:{sym:'EURUSDT',dec:5,qtyDec:2,price:1.0850,label:'EUR/USD'}, GBP:{sym:'GBPUSDT',dec:5,qtyDec:2,price:1.2650,label:'GBP/USD'}, SOL:{sym:'SOLUSDT',dec:2,qtyDec:4,price:81.49,label:'SOL/USDT'} };
+var currentCoin='XAU', freeCash=10.00, running=true, openTrades=[], nextTradeNum=1, closedCount=0, wins=0, profit=0, totalCapital=10.00, tradeSizeUSD=5.00, maxOpenTrades=1, autoMode='auto', SL_PCT=0.30, TRAIL_START=0.60, FEE_PCT=0.10, LEVERAGE=30, DIP_PCT=0.10, BOS_PCT=0.05, TODAY=new Date().toDateString(), KEY='forex_v13_sl_only', statusText='Connecting...';
+var priceHist=[], swingHigh=0, bosDone=false, bosPrice=0, fvgTop=0, fvgBottom=0, bosTime=0;
+function fmtUSD(n){ n=parseFloat(n); if(isNaN(n)||!isFinite(n)) n=0; return '$'+n.toFixed(2); }
+function fmtCoinPrice(n,coinCode){ var cfg=COINS[coinCode||currentCoin]||COINS.XAU; n=parseFloat(n); if(isNaN(n)||!isFinite(n)||n<=0) n=cfg.price; return '$'+n.toFixed(cfg.dec); }
+function safeNum(v,d){ v=parseFloat(v); if(isNaN(v)||!isFinite(v)) return d; return v; }
+function calcMaxLoss(){ return tradeSizeUSD*LEVERAGE*((SL_PCT+FEE_PCT)/100); }
+function changeCoin(){ currentCoin=document.getElementById('coinSelect').value; priceHist=[]; swingHigh=0; bosDone=false; bosPrice=0; fvgTop=0; fvgBottom=0; document.getElementById('buyBtnText').textContent='🟢 ADD '+currentCoin+' TRADE'; fetchPrices(); render(); }
+function saveSettings(){ if(openTrades.length>0){ alert('Close all trades before changing settings.'); return; } var cap=safeNum(document.getElementById('capitalInput').value,0); var sz=safeNum(document.getElementById('sizeInput').value,0); var mx=Math.floor(safeNum(document.getElementById('maxTradesInput').value,1)); var am=document.getElementById('autoModeInput').value; var sl=safeNum(document.getElementById('slInput').value,0); var ts=safeNum(document.getElementById('trailStartInput').value,0.60); var fee=safeNum(document.getElementById('feeInput').value,0); var lev=safeNum(document.getElementById('levInput').value,1); var dip=safeNum(document.getElementById('dipInput').value,0.10); var bos=safeNum(document.getElementById('bosInput').value,0.05); if(cap<5){ alert('Minimum capital $5'); return; } if(sz>cap){ alert('Margin cannot be bigger than Capital'); return; } if(sz*mx>cap){ alert('Margin x Max is bigger than Capital'); return; } totalCapital=cap; tradeSizeUSD=sz; maxOpenTrades=Math.max(1,mx); autoMode=am; SL_PCT=sl; TRAIL_START=ts; FEE_PCT=fee; LEVERAGE=lev; DIP_PCT=dip; BOS_PCT=bos; freeCash=cap; profit=0; closedCount=0; wins=0; priceHist=[]; swingHigh=0; bosDone=false; saveState(); render(); alert('Saved! V13 - SL ONLY - Max Loss -$'+calcMaxLoss().toFixed(2)+' - NO TP - Let it run'); }
+function saveState(){ try{ localStorage.setItem(KEY, JSON.stringify({freeCash,profit,closedCount,wins,openTrades,nextTradeNum,running,date:TODAY,totalCapital,tradeSizeUSD,maxOpenTrades,autoMode,SL_PCT,TRAIL_START,FEE_PCT,LEVERAGE,DIP_PCT,BOS_PCT,swingHigh,bosDone,bosPrice,fvgTop,fvgBottom,priceHist:priceHist.slice(-60),hist:document.getElementById('history').innerHTML})); }catch(e){} }
+function loadState(){ try{ var s=JSON.parse(localStorage.getItem(KEY)||'null'); if(!s) return; totalCapital=safeNum(s.totalCapital,10); tradeSizeUSD=safeNum(s.tradeSizeUSD,5); maxOpenTrades=safeNum(s.maxOpenTrades,1); autoMode=s.autoMode||'auto'; SL_PCT=safeNum(s.SL_PCT,0.30); TRAIL_START=safeNum(s.TRAIL_START,0.60); FEE_PCT=safeNum(s.FEE_PCT,0.10); LEVERAGE=safeNum(s.LEVERAGE,30); DIP_PCT=safeNum(s.DIP_PCT,0.10); BOS_PCT=safeNum(s.BOS_PCT,0.05); swingHigh=safeNum(s.swingHigh,0); bosDone=!!s.bosDone; bosPrice=safeNum(s.bosPrice,0); fvgTop=safeNum(s.fvgTop,0); fvgBottom=safeNum(s.fvgBottom,0); priceHist=s.priceHist||[]; document.getElementById('capitalInput').value=totalCapital; document.getElementById('sizeInput').value=tradeSizeUSD; document.getElementById('maxTradesInput').value=maxOpenTrades; document.getElementById('autoModeInput').value=autoMode; document.getElementById('slInput').value=SL_PCT; document.getElementById('trailStartInput').value=TRAIL_START; document.getElementById('feeInput').value=FEE_PCT; document.getElementById('levInput').value=String(LEVERAGE); document.getElementById('dipInput').value=DIP_PCT; document.getElementById('bosInput').value=BOS_PCT; if(s.date!==TODAY){ freeCash=totalCapital; profit=0; closedCount=0; wins=0; openTrades=[]; priceHist=[]; swingHigh=0; bosDone=false; return; } freeCash=safeNum(s.freeCash,totalCapital); profit=safeNum(s.profit,0); closedCount=safeNum(s.closedCount,0); wins=safeNum(s.wins,0); openTrades=s.openTrades||[]; nextTradeNum=safeNum(s.nextTradeNum,1); running=s.running!==false; if(s.hist && closedCount>0) document.getElementById('history').innerHTML=s.hist; }catch(e){} }
+function getPrice(){ return COINS[currentCoin].price; }
+function render(){ var p=getPrice(); var lbl=COINS[currentCoin].label; document.getElementById('priceTop').textContent=lbl+': '+fmtCoinPrice(p,currentCoin)+' • Live'; var badge=document.getElementById('sourceBadge'); badge.textContent=statusText; badge.className='badge'+(statusText.indexOf('Offline')!==-1?' off':''); document.getElementById('dailyTop').textContent='Today P/L: '+(profit>=0?'+':'')+fmtUSD(profit)+' • Total Trades: '+closedCount; document.getElementById('leftText').textContent='V13 • SL ONLY • NO TP • Max Loss -$'+calcMaxLoss().toFixed(2)+' • Let It Run 📈'; document.getElementById('capitalInfo').textContent='BOS +'+BOS_PCT+'% • FVG -'+DIP_PCT+'% • SL -'+SL_PCT+'% • TP: NONE 📈 • Lev '+LEVERAGE+'x • Max Loss -$'+calcMaxLoss().toFixed(2)+' • Free: '+fmtUSD(freeCash); document.getElementById('statusLabel').textContent=running?(autoMode==='auto'?'● SL ONLY AUTO ('+openTrades.length+' Open)':'● MONITORING ('+openTrades.length+' Open)'):'⏸ PAUSED ('+openTrades.length+' Open)'; document.getElementById('statusLabel').style.color=running?'#00d68f':'#ff2d55'; var mb=document.getElementById('mainBtn'); mb.textContent=running?'● BOS+FVG AUTO - Tap to PAUSE':'⏸ PAUSED - Tap to START'; mb.className='mainBtn'+(running?'':' paused'); document.getElementById('step1').className=(!bosDone?'on':''); document.getElementById('step2').className=(bosDone && openTrades.length===0?'on':''); document.getElementById('step3').className=(openTrades.length>0?'on':''); var sig=document.getElementById('signalBox'); if(!running) sig.textContent='⏸ PAUSED - Bot stopped'; else if(openTrades.length>=maxOpenTrades){ var t=openTrades[0]; var cp=COINS[t.coin].price; var pct=((cp-t.entry)/t.entry*100); sig.innerHTML='📈 RUNNING - No TP - Let it go high<br>Profit: +'+pct.toFixed(2)+'% • Locked SL: '+fmtCoinPrice(t.sl,t.coin)+' • Now: '+fmtCoinPrice(cp,t.coin); } else if(autoMode!=='auto') sig.textContent='✋ Manual Mode - Tap green button to buy'; else if(!bosDone) sig.innerHTML='⏳ Step 1: Waiting for BOS<br>Need break above: '+fmtCoinPrice(swingHigh*(1+BOS_PCT/100),currentCoin)+' • Swing High: '+fmtCoinPrice(swingHigh,currentCoin)+' • Now: '+fmtCoinPrice(p,currentCoin); else sig.innerHTML='✅ BOS DONE at '+fmtCoinPrice(bosPrice,currentCoin)+'<br>⏳ Step 2: Waiting for FVG Pullback<br>FVG Zone: '+fmtCoinPrice(fvgBottom,currentCoin)+' - '+fmtCoinPrice(fvgTop,currentCoin)+' • Now: '+fmtCoinPrice(p,currentCoin); var totalPL=0, html=''; if(openTrades.length===0){ html='<div style="font-size:13px;color:#8a9ab5">No active trades. Bot waiting for BOS + FVG.</div>'; } else { openTrades.forEach(function(t,i){ var cp=COINS[t.coin].price; var pos=t.sizeUSD*t.lev; var gross=(cp-t.entry)*t.qty; var fee=pos*(FEE_PCT/100); var net=gross-fee; totalPL+=net; var locked = t.sl>=t.entry ? '🔒 LOCKED PROFIT' : '🛡️ SL Protecting'; html+='<div class="tradeItem"><div class="tradeTop"><span>'+t.coin+' #'+t.num+' (SL ONLY • '+t.lev+'x) 📈</span><span style="color:'+(net>=0?'#00d68f':'#ff2d55')+'">'+(net>=0?'+':'')+fmtUSD(net)+'</span></div><div class="tradeSub">BOS '+fmtCoinPrice(t.bosPrice||t.entry,t.coin)+' → Entry '+fmtCoinPrice(t.entry,t.coin)+' → TP: NONE 📈 | SL '+fmtCoinPrice(t.sl,t.coin)+' ('+locked+')<br>Now '+fmtCoinPrice(cp,t.coin)+' • Margin '+fmtUSD(t.sizeUSD)+' • Position '+fmtUSD(pos)+' • Trail Start +'+TRAIL_START+'%</div><button class="miniClose" onclick="closeOneTrade('+i+',\'MANUAL TAKE PROFIT\')">💰 Take Profit Now</button></div>'; }); } document.getElementById('openTradesList').innerHTML=html; document.getElementById('openPL').textContent='Open P/L: '+(totalPL>=0?'+':'')+fmtUSD(totalPL); document.getElementById('openPL').className=totalPL>=0?'green':'red'; document.querySelector('.btnSell').textContent='🔴 CLOSE ALL ('+openTrades.length+')'; document.getElementById('loopInfo').innerHTML='BOS +'+BOS_PCT+'% → FVG -'+DIP_PCT+'% → SL -'+SL_PCT+'% | TP: NONE 📈 | Trail 0.30% behind price<br>V13 • NO TARGET - Continuous • SL protects, profit runs'; var wr=closedCount>0?Math.round((wins/closedCount)*100):0; document.getElementById('winRate').textContent='Win Rate: '+wr+'%'; document.getElementById('balDisplay').textContent='Free Cash: '+fmtUSD(freeCash); document.getElementById('winsDisplay').textContent='Wins: '+wins+' | Losses: '+(closedCount-wins); saveState(); }
+function toggleBot(){ running=!running; render(); }
+function manualBuy(){ if(!running){ running=true; } if(openTrades.length>=maxOpenTrades){ alert('Max '+maxOpenTrades+' open trade(s). Close one first.'); return; } if(freeCash<tradeSizeUSD){ alert('Not enough Free Cash. Free: '+fmtUSD(freeCash)+' Need: '+fmtUSD(tradeSizeUSD)); return; } var p=getPrice(); var pos=tradeSizeUSD*LEVERAGE; var qty=pos/p; var t={num:nextTradeNum++,coin:currentCoin,entry:p,qty:qty,sizeUSD:tradeSizeUSD,lev:LEVERAGE,bosPrice:bosPrice,sl:p*(1-SL_PCT/100),highest:p}; freeCash-=tradeSizeUSD; openTrades.push(t); bosDone=false; bosPrice=0; fvgTop=0; fvgBottom=0; swingHigh=p; render(); }
+function closeOneTrade(idx,reason){ var t=openTrades[idx]; if(!t) return; var cp=COINS[t.coin].price; var pos=t.sizeUSD*t.lev; var gross=(cp-t.entry)*t.qty; var fee=pos*(FEE_PCT/100); var net=gross-fee; freeCash+=t.sizeUSD+net; profit+=net; closedCount++; if(net>0) wins++; var hb=document.getElementById('history'); if(closedCount===1) hb.innerHTML=''; var row=document.createElement('tr'); row.innerHTML='<td>#'+closedCount+'</td><td>'+t.coin+' '+fmtCoinPrice(t.entry,t.coin)+' → '+fmtCoinPrice(cp,t.coin)+' ('+t.lev+'x)</td><td style="font-weight:700;color:'+(net>=0?'#00d68f':'#ff2d55')+'">'+(net>=0?'+':'')+fmtUSD(net)+'</td><td>'+reason+'</td>'; hb.prepend(row); openTrades.splice(idx,1); render(); }
+function closeAllTrades(reason){ if(openTrades.length===0){ alert('No open trades'); return; } while(openTrades.length>0){ closeOneTrade(0,reason); } }
+function resetDay(){ if(!confirm('Reset daily P/L? Bot will keep trading.')) return; profit=0; closedCount=0; wins=0; openTrades=[]; freeCash=totalCapital; priceHist=[]; swingHigh=0; bosDone=false; document.getElementById('history').innerHTML='<tr><td colspan="4" style="text-align:center;color:#8a9ab5">No closed trades yet</td></tr>'; render(); }
+function hardReset(){ if(!confirm('Reset everything to $10.00 V13 SL ONLY?')) return; localStorage.removeItem(KEY); location.reload(); }
+async function fetchPrices(){
+  var coin=currentCoin; var sym=COINS[coin].sym;
+  var urls=['https://data-api.binance.vision/api/v3/ticker/price?symbol='+sym,'https://api.binance.com/api/v3/ticker/price?symbol='+sym];
+  for(var i=0;i<urls.length;i++){ try{ var r=await fetch(urls[i], {cache:'no-store'}); if(!r.ok) continue; var j=await r.json(); var p=parseFloat(j.price); if(p>0 && p<1000000){ COINS[coin].price=p; statusText='Live • '+COINS[coin].label; render(); return; } }catch(e){} }
+  statusText='Offline - Last Price Kept'; render();
+}
+function tick(){
+  var p=getPrice();
+  priceHist.push(p); if(priceHist.length>120) priceHist.shift();
+  if(priceHist.length>=10){
+    var recent=priceHist.slice(0,-5);
+    var newHigh=Math.max.apply(null, recent);
+    if(swingHigh===0) swingHigh=newHigh;
+    if(!bosDone){
+      if(p>=swingHigh*(1+BOS_PCT/100)){
+        bosDone=true; bosPrice=p; fvgTop=p; fvgBottom=p*(1-DIP_PCT/100); bosTime=Date.now();
+      } else if(p>swingHigh) swingHigh=p;
+    } else {
+      if(p<=fvgTop && p>=fvgBottom){
+        if(running && autoMode==='auto' && openTrades.length<maxOpenTrades && freeCash>=tradeSizeUSD){ manualBuy(); }
+      }
+      if(Date.now()-bosTime>900000){ bosDone=false; swingHigh=p; }
+    }
+  } else if(swingHigh===0) swingHigh=p;
+  for(var i=openTrades.length-1;i>=0;i--){ var t=openTrades[i]; var cp=COINS[t.coin].price; var profitPct=(cp-t.entry)/t.entry*100; if(cp>t.highest) t.highest=cp; if(profitPct>=TRAIL_START){ var newSL=cp*(1-SL_PCT/100); if(newSL>t.sl) t.sl=newSL; } if(cp<=t.sl){ var reason = t.sl>=t.entry ? 'TRAILING SL - LOCKED PROFIT 📈' : 'SL HIT - Protected'; closeOneTrade(i,reason); } }
+  render();
+}
+window.addEventListener('beforeunload', saveState);
+loadState(); render(); fetchPrices(); setInterval(fetchPrices,3000); setInterval(tick,2000);
+</script>
+</body>
+                                                           </html>
